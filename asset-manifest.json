@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/AccountingApp/static/css/main.2eaeae43.css",
-    "main.js": "/AccountingApp/static/js/main.f87a6f1d.js",
+    "main.js": "/AccountingApp/static/js/main.5dd48233.js",
     "index.html": "/AccountingApp/index.html",
     "main.2eaeae43.css.map": "/AccountingApp/static/css/main.2eaeae43.css.map",
-    "main.f87a6f1d.js.map": "/AccountingApp/static/js/main.f87a6f1d.js.map"
+    "main.5dd48233.js.map": "/AccountingApp/static/js/main.5dd48233.js.map"
   },
   "entrypoints": [
     "static/css/main.2eaeae43.css",
-    "static/js/main.f87a6f1d.js"
+    "static/js/main.5dd48233.js"
   ]
 }
