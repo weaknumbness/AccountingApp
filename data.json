@@ -1,0 +1,49 @@
+{
+  "categories": {
+    "Чипсы": true,
+    "Соки": true,
+    "Булочки": true
+  },
+  "cards": {
+    "card1": {
+      "key": "card1",
+      "name": "Чипсы Зеленый лук",
+      "price": ["165Р","175Р"],
+      "stock": 25,
+      "profit": 0,
+      "category": "Чипсы"
+    },
+    "card2": {
+      "key": "card2",
+      "name": "Апельсиновый сок",
+      "price": ["120Р","130Р"],
+      "stock": 10,
+      "profit": 0,
+      "category": "Соки"
+    },
+    "card3": {
+      "key": "card3",
+      "name": "Булочка с корицей",
+      "price": ["50Р","60Р"],
+      "stock": 15,
+      "profit": 0,
+      "category": "Булочки"
+    },
+    "card4": {
+      "key": "card4",
+      "name": "Чипсы Сметана и лук",
+      "price": ["170Р","180Р"],
+      "stock": 30,
+      "profit": 0,
+      "category": "Чипсы"
+    },
+    "card5": {
+      "key": "card5",
+      "name": "Яблочный сок",
+      "price": ["110Р","120Р"],
+      "stock": 20,
+      "profit": 0,
+      "category": "Соки"
+    }
+  }
+}

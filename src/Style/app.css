@@ -1,0 +1,561 @@
+:root {
+  --grey-color: #d3d3d3;
+  --primary: #0b74ff;
+}
+
+* {
+  font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "GRAD" 0;
+}
+
+
+.container {
+  margin: 15px;
+}
+
+.Authorization {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AuthForm {
+  border: 1px solid var(--grey-color);
+  border-radius: 10px;
+  padding: 20px 50px;
+  box-shadow: 0px 0px 10px var(--grey-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.AuthForm h2 {
+  margin-bottom: 30px;
+}
+
+.AuthForm label {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+input {
+  border: 1px solid var(--grey-color);
+  border-radius: 20px;
+  padding: 0 20px 0;
+  height: 40px;
+  /* color: #fff; */
+}
+
+.AuthForm input:focus {
+  background-color: #acacac;
+  transition: all .5s ease-out;
+}
+
+.AuthForm input:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.AuthForm .confirmButton {
+  margin: 0px auto;
+  background-color: transparent;
+  border: 1px solid var(--grey-color);
+  border-radius: 15px;
+  padding: 8px 15px;
+  font-size: 15px;
+}
+
+.withoutAcc {
+  color: #acacac;
+  font-size: 15px;
+  margin: 20px 0px 0px 0px;
+}
+
+.error {
+  font-size: 15px;
+  color: red;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 70px;
+  padding: 15px 20px;
+  font-size: 25px;
+  box-shadow: 5px 0px 12px var(--grey-color);
+}
+
+.Header h1 {
+  grid-column: 2;
+  justify-self: center;
+  margin: 0;
+}
+
+.Header button {
+  grid-column: 3;
+  justify-self: end;
+}
+
+.Card {
+  padding: 20px;
+  border: 1px solid var(--grey-color);
+  /* width: 20%; */
+  font-size: 20px;
+  border-radius: 15px;
+  /* margin: 15px 0px; */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.Card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.deleted {
+  opacity: 0;
+  transition: all .5s ease-out;
+  transform: scale(0.9);
+}
+
+.CardInfo {
+  border-bottom: 1px solid #acacac;
+  padding-bottom: 10px;
+}
+
+.FirstSection {
+  font-weight: 600;
+}
+
+.FirsSectionOfButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SecondSectionOfButtons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 5px;
+  height: 100%;
+}
+
+.SecondSectionOfButtons button {
+  width: 100%;
+}
+
+.singleButton {
+  height: 100%;
+}
+
+.FirstSection,
+.SecondSection,
+.ThirdSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+
+.CategoryOfTitle {
+  color: #acacac;
+  font-size: 20px;
+}
+
+.Buttons {
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.wkBtn {
+  font-size: 20px;
+  color: #000;
+  padding: 5px 20px;
+  justify-content: center;
+  border-radius: 10px;
+  display: flex;
+  height: stretch;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.ButtonOfSale {
+  background: linear-gradient(135deg, #2f80ed, #1c5ed6);
+  color: white;
+  border: none;
+}
+
+.wkBtn:hover {
+  transform: scale(1.01);
+}
+
+.EditButton {
+  background: #c2c2c2;
+}
+
+.DeleteButton {
+  background: #fff;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+}
+
+.DeleteButton:hover {
+  background: #ff4d4f;
+  color: white;
+}
+
+.CorrectFucn,
+.DeleteIcon {
+  padding-right: 2px;
+}
+
+.EditButton {
+  width: 49%;
+  color: #646464;
+}
+
+.AddCardBtn:hover {
+  transform: scale(1.1);
+}
+
+.DeleteButton {
+  border: .5px solid #acacac;
+  color: rgb(255, 97, 97);
+  width: 49%;
+}
+
+.ButtonOfSale {
+  width: 100%;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+
+
+.info {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.Cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  transition: all .5s ease-out;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal-window {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 90%;
+  transform: translateY(-40px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-window.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-window h1 {
+  text-align: center;
+  font-size: 25px;
+}
+
+.addCardForm {
+  padding: 15px 0px;
+}
+
+.addCardForm select,
+.addCardForm input {
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.categoryTitle {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 400;
+  color: #646464;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.divider {
+  flex: 1;
+  border: .5px solid #a8a8a8;
+  ;
+  height: .5px;
+  border-radius: 20px;
+}
+
+.AddCardBtn {
+  background: var(--primary);
+  color: white;
+  font-size: 25px;
+  height: auto;
+}
+
+.CardAddCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* border: 0px; */
+  height: 270px;
+}
+
+.category p {
+  margin: 10px 0px;
+  font-size: 15px;
+}
+
+.addCategory h1 {
+  margin-bottom: 15px;
+}
+
+.addCategory form>button {
+  margin-top: 15px;
+}
+
+/* .hideBtn {
+  margin-top: 15px;
+} */
+
+.total {
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.Edit .hideBtn {
+  margin: 0px;
+}
+
+.deleteCategory .modal-window {
+  text-align: center;
+}
+
+.deleteCategory .modal-window h1 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.deleteCategory .buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.cancelBtn {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.deleteBtn {
+  background-color: rgb(255, 97, 97);
+  color: #fff;
+}
+
+.categoryTitle .deleteBtn {
+  background: transparent;
+  color: rgb(255, 97, 97);
+  margin-left: 10px;
+}
+
+.AddCategory .buttons {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+}
+
+.addCategory h1 {
+  text-align: left;
+}
+
+.total {
+  margin-top: 10px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.EditButton {
+  padding: 6px 10px;
+
+  /* border-radius: 15px; */
+  border: 1px solid #d1d5db;
+
+  background: white;
+  color: #444;
+
+  /* font-size: 13px; */
+
+  transition: all 0.2s ease;
+}
+
+.EditButton:hover {
+  border-color: #2f80ed;
+  color: #2f80ed;
+}
+
+.add {
+  padding: 10px 18px;
+
+  background: #2f80ed;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.add:hover {
+  background: #1f6fe0;
+}
+
+.headerButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.burger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burgerMenu {
+  position: absolute;
+  top: 60px;
+  right: -70px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: white;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+.Logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all .5s ease-out;
+  font-size: 14px;
+}
+
+.Logout:hover {
+  border: rgb(255, 97, 97) 1px solid;
+  color: rgb(255, 97, 97);
+}
+
+@media (max-width: 350px) {
+  .AuthForm {
+    width: 100%;
+  }
+
+  .AuthForm input {
+    width: 100%;
+  }
+
+  .Card,
+  .CategoryOfTitle,
+  .info {
+    font-size: 15px;
+  }
+
+  .AddCategory .buttons {
+    flex-direction: column;
+  }
+
+  .AddCategory .buttons button {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 650px) {
+  .add {
+    font-size: 15px;
+  }
+
+  .modal-window h1,
+  .modal-window {
+    font-size: 15px;
+  }
+
+}
+
+@media (max-width: 1000px) {
+  .Card {
+    width: 100%;
+  }
+
+  .Header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .AddCategory .buttons button {
+    font-size: 15px;
+  }
+
+  .desktopBtn {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+}
+
+@media (max-width: 1100px) {
+  .Cards {
+    grid-template-columns: 1fr;
+  }
+}
