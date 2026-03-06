@@ -10,6 +10,7 @@ import Header from "./Layouts/Header";
 import Category from "./Components/Category";
 import AddCategory from "./Components/AddCategory";
 import EditCard from "./Components/EditCard";
+import { div } from "framer-motion/client";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -161,7 +162,9 @@ export default function App() {
       })
     );
   };
-  if (loading) return <p>Загрузка...</p>;
+  if (loading) return <div class="loader">
+    Загрузка
+  </div>;
 
   if (!user) return <Authorization />;
 
