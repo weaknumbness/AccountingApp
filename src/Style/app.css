@@ -191,6 +191,15 @@ input {
   height: stretch;
   align-items: center;
   transition: all 0.2s;
+  height: 40px;
+  /* фиксированная высота */
+  line-height: 1;
+  font-size: 16px;
+  /* под мобильные устройства */
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ButtonOfSale {
@@ -492,6 +501,11 @@ input {
   color: rgb(255, 97, 97);
 }
 
+.Logout svg {
+  width: 16px;
+  height: 16px;
+}
+
 @media (max-width: 350px) {
   .AuthForm {
     width: 100%;
@@ -551,6 +565,11 @@ input {
 
   .burger {
     display: block;
+  }
+
+  .wkBtn {
+    height: 36px;
+    font-size: 14px;
   }
 }
 
