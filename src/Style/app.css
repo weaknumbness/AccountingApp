@@ -341,7 +341,7 @@ input {
   justify-content: center;
   cursor: pointer;
   /* border: 0px; */
-  height: 270px;
+  min-height: 270px;
 }
 
 .category p {
