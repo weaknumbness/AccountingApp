@@ -106,11 +106,11 @@ export default function EditCard({ card, isOpen, cb, handleSubmit }) {
             value={form.profit}
             onChange={handleChange}
           />
-
-          <button type="submit" className="SubmitBtn wkBtn">Сохранить</button>
+          <div className="FormBtns">
+            <button type="submit" className="SubmitCardBtn wkBtn">Сохранить</button>
+            <button className="wkBtn closeBtn hideBtn" onClick={cb}>Закрыть</button>
+          </div>
         </form>
-        <button className="wkBtn SubmitBtn hideBtn" onClick={cb}>Закрыть</button>
-
       </div>
     </div>
   );

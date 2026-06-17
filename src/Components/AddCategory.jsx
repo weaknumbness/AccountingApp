@@ -45,8 +45,8 @@ export default function AddCategory(props) {
               />
             </label>
             <div className="buttons">
-              <button type="submit" className="wkBtn SubmitBtn">Сохранить категорию</button>
-              <button className="wkBtn SubmitBtn hideBtn" onClick={props.hideCb}>Закрыть</button>
+              <button type="submit" className="wkBtn SubmitCategoryBtn">Сохранить категорию</button>
+              <button className="wkBtn closeBtn hideBtn" onClick={props.hideCb}>Закрыть</button>
             </div>
           </form>
         </div>

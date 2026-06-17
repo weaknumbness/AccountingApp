@@ -494,6 +494,16 @@ input {
   gap: 10px;
   transition: all .5s ease-out;
   font-size: 14px;
+  border: .5px solid #a8a8a8;
+}
+
+.SubmitCategoryBtn, .SubmitCardBtn {
+  background-color: #0b74ff;
+  color: #fff;
+}
+
+.closeBtn {
+  border: .5px solid #a8a8a8;
 }
 
 .Logout:hover {
@@ -551,6 +561,11 @@ input {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+.FormBtns {
+  display: flex;
+  gap: 15px;
 }
 
 @-webkit-keyframes load3 {

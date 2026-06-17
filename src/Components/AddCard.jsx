@@ -153,9 +153,11 @@ export default function AddCard(props) {
               onChange={handleChange}
               required
             />
-            <button type="submit" className="wkBtn SubmitBtn">Сохранить</button>
+            <div className="FormBtns">
+              <button type="submit" className="wkBtn SubmitCardBtn">Сохранить</button>
+              <button className="wkBtn closeBtn" onClick={props.cb}>Закрыть</button>
+            </div>
           </form>
-          <button className="wkBtn" onClick={props.cb}>Закрыть</button>
         </div>
       </div>
     )}
