@@ -37,7 +37,7 @@ export default function AuthForm(props) {
           name="email"
           value={email}
           onChange={handleChangeEmail}
-          placeholder="Danil_Kolbasenko2017@mail.ru"
+          placeholder="somemail@mail.ru"
           required
         />
         <input
