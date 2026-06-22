@@ -1,16 +1,12 @@
-export type Product = {
+type CategoryName = string;
+
+type ProductCard = {
+  id: string;
   name: string;
-  priceOne: number;
-  priceTwo: number;
+  prices: number[];
   stock: number;
   profit: number;
-  categoryId:number;
-  sold: number;
-};
-
-export type Category = {
-  name: string;
-  id:number;
+  category: CategoryName;
 };
 
 export type User = {

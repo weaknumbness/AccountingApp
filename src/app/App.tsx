@@ -1,17 +1,10 @@
-import { addProduct } from "../services/productsService"
-import type { ProductFormState } from "../types"
-
 function App() {
-
-  const handleAddCard = (data: ProductFormState) => {
-    // addProduct(form)
-  }
-
   return (
-    <>
-      
-    </>
-  )
+    <main>
+      <h1>AccountingApp</h1>
+      <p>Project restoration in progress</p>
+    </main>
+  );
 }
 
-export default App
+export default App;
