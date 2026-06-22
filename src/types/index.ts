@@ -1,6 +1,6 @@
-type CategoryName = string;
+export type CategoryName = string;
 
-type ProductCard = {
+export type ProductCard = {
   id: string;
   name: string;
   prices: number[];

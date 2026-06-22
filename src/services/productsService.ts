@@ -1,3 +1,7 @@
+import type { ProductCard } from "../types";
+
 export const subscribeToProducts = (
-  callback: (products: unknown[]) => void,
-) => {};
+  callback: (products: ProductCard[]) => void,
+) => {
+  callback([]);
+};
