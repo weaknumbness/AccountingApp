@@ -1,0 +1,99 @@
+:root {
+  --grey-color: #d3d3d3;
+  --main-color: #09172a;
+  --side-color: #182437;
+  --white-color: #fff;
+}
+
+* {
+  font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "GRAD" 0;
+}
+
+.top-side {
+  padding: 25px 10px 0px 10px;
+}
+
+.side-bar {
+  background-color: var(--main-color);
+  width: 15%;
+  color: var(--grey-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-bottom: 25px;
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-picture {
+  max-width: 20%;
+}
+
+.logo-picture img {
+  width: 100%;
+  height: auto;
+}
+
+.menu {
+  margin-bottom: 50px;
+}
+
+.divider {
+  border-bottom: 1px solid var(--side-color);
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.menu h2,
+.settings h2 {
+  margin: 5px 0px;
+  font-size: 12px;
+}
+
+
+.menu li,
+.settings li {
+  padding: 10px 5px;
+  margin: 3px 0px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.user-profile {
+  padding: 15px 10px 30px 10px;
+  background-color: var(--side-color);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white-color);
+}
+
+.user-mail {
+  font-weight: 800;
+  color: var(--white-color);
+}
