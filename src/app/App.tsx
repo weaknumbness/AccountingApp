@@ -3,6 +3,8 @@ import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { auth } from "../services/firebase/firebase";
 import { AuthPage } from "../features/auth/AuthPage";
 import { AppHeader } from "../components/layout/AppHeader";
+import "../styles/reset.css";
+import "../styles/style.css";
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
