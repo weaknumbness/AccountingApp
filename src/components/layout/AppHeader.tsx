@@ -1,17 +1,17 @@
-type AppHeaderProps = {
-  userEmail: string | null;
-  onLogout: () => void;
-};
+import type { AppHeaderProps } from "../../types";
 
-export function AppHeader({ userEmail, onLogout }: AppHeaderProps) {
+
+// export function AppHeader({title}: AppHeaderProps) {
+export function AppHeader() {
   return (
     <header>
-      <h1>AccountingApp</h1>
-
+      {/* <h2>{title}</h2> */}
+      {/* Какого-то хуя заголовок в сайд баре на другой высоте */}
+      <h2>Товары</h2>
       <div>
-        <span>{userEmail}</span>
-        <button type="button" onClick={onLogout}>
-          Выйти
+        <button type="button" className="add-button">
+          <div className="plus">+</div>
+          <div className="add">Добавить товар</div>
         </button>
       </div>
     </header>

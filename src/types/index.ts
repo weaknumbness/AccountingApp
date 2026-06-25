@@ -20,3 +20,7 @@ export type ProductFormState = {
   price: number;
   stock: number;
 };
+
+export type AppHeaderProps = {
+  title: string;
+};

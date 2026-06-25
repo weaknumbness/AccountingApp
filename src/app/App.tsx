@@ -6,6 +6,8 @@
 import "../styles/reset.css";
 import "../styles/newStyle.css";
 import AppSideBar from "../components/layout/AppSideBar";
+import { AppHeader } from "../components/layout/AppHeader";
+import AppMainSection from "../components/layout/AppMainSection";
 
 function App() {
   // const [user, setUser] = useState<User | null>(null);
@@ -33,7 +35,7 @@ function App() {
   // }
 
   return (
-    <div>
+    <div className="main">
       {/* <AppHeader userEmail={user.email} onLogout={handleLogout} />
 
       <main>
@@ -41,6 +43,7 @@ function App() {
         <p>Авторизация восстановлена. Следующий шаг — категории.</p>
       </main> */}
       <AppSideBar/>
+      <AppMainSection/>
     </div>
   );
 }
