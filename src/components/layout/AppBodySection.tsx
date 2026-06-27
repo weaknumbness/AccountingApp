@@ -1,6 +1,63 @@
+import { useState } from "react";
 import CategoryOfButtons from "../../features/categories/CategoryOfButtons";
+import Cards from "../../features/products/Cards";
+import type { CardData } from "../../types";
+import productPicture from "../assets/LaysCrab.jpg";
+
+const handleDelete = () => {};
+const handleSale = () => {};
+const handleChange = () => {};
 
 export default function AppBodySection() {
+  // Придумать создание уникального айди
+  const [mockCards, setMockCards] = useState<CardData[]>([
+    {
+      id: "xui",
+      price: [165, 175],
+      img: productPicture,
+      title: "Лейс с крабом",
+      stock: 19,
+      profit: 0,
+      category: "Чипсы",
+    },
+    {
+      id: "xui",
+      price: [165, 175],
+      img: productPicture,
+      title: "Лейс с крабом",
+      stock: 19,
+      profit: 0,
+      category: "Чипсы",
+    },
+    {
+      id: "xui",
+      price: [165, 175],
+      img: productPicture,
+      title: "Лейс с крабом",
+      stock: 19,
+      profit: 0,
+      category: "Чипсы",
+    },
+    {
+      id: "xui",
+      price: [165, 175],
+      img: productPicture,
+      title: "Лейс с крабом",
+      stock: 19,
+      profit: 0,
+      category: "Чипсы",
+    },
+    {
+      id: "xui",
+      price: [165, 175],
+      img: productPicture,
+      title: "Лейс с крабом",
+      stock: 19,
+      profit: 0,
+      category: "Чипсы",
+    },
+  ]);
+
   return (
     <div className="body-section">
       <label id="search-good">
@@ -18,6 +75,14 @@ export default function AppBodySection() {
       </label>
       <div className="category-buttons">
         <CategoryOfButtons />
+      </div>
+      <div className="cards-section">
+        <Cards
+          cards={mockCards}
+          onChange={handleChange}
+          onSale={handleSale}
+          onDelete={handleDelete}
+        />
       </div>
     </div>
   );

@@ -6,7 +6,6 @@
 import "../styles/reset.css";
 import "../styles/newStyle.css";
 import AppSideBar from "../components/layout/AppSideBar";
-import { AppHeader } from "../components/layout/AppHeader";
 import AppMainSection from "../components/layout/AppMainSection";
 
 function App() {

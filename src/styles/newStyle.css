@@ -175,3 +175,103 @@ header h2 {
   background-color: var(--main-color);
   color: var(--white-color);
 }
+
+.cards-section {
+  padding: 20px 0px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  width: 100%;
+  padding: 15px 10px;
+  border: 1px solid var(--grey-color);
+  border-radius: 15px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-image {
+  width: 50%;
+}
+
+.card-image img {
+  max-width: 100%;
+}
+
+.card-titleAndCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title,
+.card-dropdown {
+  padding-top: 10px;
+}
+
+.card-title {
+  font-weight: 800;
+}
+
+.card-dropdown-button {
+  background: rgba(0, 0, 0, 0);
+}
+
+.card-category {
+  width: fit-content;
+  background: #ff9bff;
+  color: #be2cbe;
+  padding: 7px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.card-data {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px 0px;
+}
+
+.card-price,
+.card-stock,
+.card-profit {
+  display: flex;
+  gap: 10px;
+}
+
+.prices {
+  display: flex;
+  gap: 5px;
+}
+
+.card-price p,
+.card-stock p,
+.card-profit p {
+  color: #727272;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 7px;
+  justify-content: space-between;
+}
+
+.card-button {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 7px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 50%;
+}

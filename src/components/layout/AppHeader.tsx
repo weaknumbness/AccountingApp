@@ -1,4 +1,3 @@
-import type { AppHeaderProps } from "../../types";
 
 
 // export function AppHeader({title}: AppHeaderProps) {
