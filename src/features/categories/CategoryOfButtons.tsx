@@ -1,20 +1,27 @@
-import { useState } from "react";
 import CategoryButton from "./CategoryButton";
 
-export default function CategoryOfButtons() {
-  const [buttons, setButtons] = useState<string[]>([
-    "Кофе",
-    "Чай",
-    "Десерты",
-    "Напитки",
-    "Снеки",
-  ]);
+type CategoriesProps = {
+  categories: string[];
+  getCountsOfProducts: (categoryName: string) => number;
+};
 
+export default function CategoryOfButtons({
+  categories,
+  getCountsOfProducts,
+}: CategoriesProps) {
   return (
     <div className="category-buttons">
-      <CategoryButton title="Все" isActive={true}/>
-      {buttons.map((button) => (
-        <CategoryButton title={button} isActive={false} />
+      <CategoryButton
+        title="Все"
+        isActive={true}
+        getCountsOfProducts={getCountsOfProducts}
+      />
+      {categories.map((button) => (
+        <CategoryButton
+          title={button}
+          isActive={false}
+          getCountsOfProducts={getCountsOfProducts}
+        />
       ))}
     </div>
   );

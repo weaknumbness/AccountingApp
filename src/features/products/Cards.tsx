@@ -1,12 +1,21 @@
-import { motion } from "framer-motion";
-import type { CardData } from "../../types";
+import { motion, AnimatePresence, stagger } from "motion/react";
+import type { Product } from "../../types";
 import Card from "./Card";
 
 type CardsProps = {
-  cards: CardData[];
-  onDelete: () => void;
-  onChange: () => void;
-  onSale: () => void;
+  cards: Product[];
+  onDelete: (productId: string) => void;
+  onChange: (productId: string) => void;
+  onSale: (productId: string, price: number) => void;
+};
+
+const cardsVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: stagger(0.2),
+    },
+  },
 };
 
 export default function Cards({
@@ -16,21 +25,23 @@ export default function Cards({
   onSale,
 }: CardsProps) {
   return (
-    <motion.div className="cards">
-      {cards.map((card) => (
-        <Card
-          id={card.id}
-          price={card.price}
-          img={card.img}
-          title={card.title}
-          stock={card.stock}
-          profit={card.profit}
-          onDelete={onDelete}
-          onChange={onChange}
-          onSale={onSale}
-          category={card.category}
-        />
-      ))}
+    <motion.div
+      className="cards"
+      initial="hidden"
+      animate="visible"
+      variants={cardsVariants}
+    >
+      <AnimatePresence mode="popLayout">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            product={card}
+            onDelete={onDelete}
+            onChange={onChange}
+            onSale={onSale}
+          />
+        ))}
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -1,56 +1,68 @@
 import { useState } from "react";
 import CategoryOfButtons from "../../features/categories/CategoryOfButtons";
 import Cards from "../../features/products/Cards";
-import type { CardData } from "../../types";
+import type { Product } from "../../types";
 import productPicture from "../assets/LaysCrab.jpg";
 
-const handleDelete = () => {};
-const handleSale = () => {};
-const handleChange = () => {};
+const handleSale = (productId: string) => {};
+const handleChange = (productId: string) => {};
 
 export default function AppBodySection() {
-  // Придумать создание уникального айди
-  const [mockCards, setMockCards] = useState<CardData[]>([
+  const categories = ["Чипсы", "Напитки", "Шоколад"];
+
+  const getCategoryCount = (categoryName: string) => {
+    if (categoryName === "Все") {
+      return mockCards.length;
+    }
+    return mockCards.filter((product) => product.category === categoryName)
+      .length;
+  };
+
+  const handleDelete = (productId: string) => {
+    setMockCards((prev) => prev.filter((product) => product.id !== productId));
+  };
+
+  const [mockCards, setMockCards] = useState<Product[]>([
     {
-      id: "xui",
-      price: [165, 175],
-      img: productPicture,
+      id: crypto.randomUUID(),
+      prices: [165, 175],
+      imageUrl: productPicture,
       title: "Лейс с крабом",
       stock: 19,
       profit: 0,
       category: "Чипсы",
     },
     {
-      id: "xui",
-      price: [165, 175],
-      img: productPicture,
+      id: crypto.randomUUID(),
+      prices: [165, 175],
+      imageUrl: productPicture,
       title: "Лейс с крабом",
       stock: 19,
       profit: 0,
       category: "Чипсы",
     },
     {
-      id: "xui",
-      price: [165, 175],
-      img: productPicture,
+      id: crypto.randomUUID(),
+      prices: [165, 175],
+      imageUrl: productPicture,
       title: "Лейс с крабом",
       stock: 19,
       profit: 0,
       category: "Чипсы",
     },
     {
-      id: "xui",
-      price: [165, 175],
-      img: productPicture,
+      id: crypto.randomUUID(),
+      prices: [165, 175],
+      imageUrl: productPicture,
       title: "Лейс с крабом",
       stock: 19,
       profit: 0,
       category: "Чипсы",
     },
     {
-      id: "xui",
-      price: [165, 175],
-      img: productPicture,
+      id: crypto.randomUUID(),
+      prices: [165, 175],
+      imageUrl: productPicture,
       title: "Лейс с крабом",
       stock: 19,
       profit: 0,
@@ -74,7 +86,10 @@ export default function AppBodySection() {
         <input type="text" placeholder="Поиск товаров..." />
       </label>
       <div className="category-buttons">
-        <CategoryOfButtons />
+        <CategoryOfButtons
+          categories={categories}
+          getCountsOfProducts={getCategoryCount}
+        />
       </div>
       <div className="cards-section">
         <Cards

@@ -1,4 +1,3 @@
-export type CategoryName = string;
 
 export type ProductCard = {
   id: string;
@@ -6,7 +5,7 @@ export type ProductCard = {
   prices: number[];
   stock: number;
   profit: number;
-  category: CategoryName;
+  category: string;
 };
 
 export type User = {
@@ -25,17 +24,19 @@ export type AppHeaderProps = {
   title: string;
 };
 
-export type CardProps = {
+export type Product = {
   id: string;
-  price: number[];
-  img: string;
+  prices: number[];
+  imageUrl: string;
   title: string;
   stock: number;
   profit: number;
   category: string;
-  onDelete: () => void;
-  onChange: () => void;
-  onSale: () => void;
 };
 
-export type CardData = Omit<CardProps, "onDelete" | "onChange" | "onSale">;
+export type ProductCardProps = {
+  product: Product;
+  onDelete: (productId: string) => void;
+  onChange: (productId: string) => void;
+  onSale: (productId: string, price: number) => void;
+};
