@@ -9,40 +9,10 @@ import AppSideBar from "../components/layout/AppSideBar";
 import AppMainSection from "../components/layout/AppMainSection";
 
 function App() {
-  // const [user, setUser] = useState<User | null>(null);
-  // const [isAuthLoading, setIsAuthLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //     setIsAuthLoading(false);
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
-
-  // const handleLogout = async () => {
-  //   await signOut(auth);
-  // };
-
-  // if (isAuthLoading) {
-  //   return <div>Загрузка...</div>;
-  // }
-
-  // if (!user) {
-  //   return <AuthPage />;
-  // }
-
   return (
     <div className="main">
-      {/* <AppHeader userEmail={user.email} onLogout={handleLogout} />
-
-      <main>
-        <h2>Главный экран приложения</h2>
-        <p>Авторизация восстановлена. Следующий шаг — категории.</p>
-      </main> */}
-      <AppSideBar/>
-      <AppMainSection/>
+      <AppSideBar />
+      <AppMainSection />
     </div>
   );
 }

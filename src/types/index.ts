@@ -1,4 +1,3 @@
-
 export type ProductCard = {
   id: string;
   name: string;
@@ -40,3 +39,21 @@ export type ProductCardProps = {
   onChange: (productId: string) => void;
   onSale: (productId: string, price: number) => void;
 };
+
+export type ProductFormData = {
+  title: string;
+  prices: number[];
+  imageUrl: string;
+  stock: number;
+  category: string;
+};
+
+export type ProductFormForInputs = {
+  title: string;
+  firstPrice: string;
+  secondPrice: string;
+  imageUrl: string;
+  stock: string;
+  category: string;
+};
+

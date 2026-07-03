@@ -1,14 +1,22 @@
-import { useState } from "react";
 import CategoryOfButtons from "../../features/categories/CategoryOfButtons";
 import Cards from "../../features/products/Cards";
 import type { Product } from "../../types";
-import productPicture from "../assets/LaysCrab.jpg";
 
-const handleSale = (productId: string) => {};
-const handleChange = (productId: string) => {};
+type AppBodySectionProps = {
+  mockCards: Product[];
+  handleDelete: (productId: string) => void;
+  handleSale: (productId: string) => void;
+  handleChange: (productId: string) => void;
+  categories: string[];
+};
 
-export default function AppBodySection() {
-  const categories = ["Чипсы", "Напитки", "Шоколад"];
+export default function AppBodySection({
+  mockCards,
+  handleDelete,
+  handleSale,
+  handleChange,
+  categories
+}: AppBodySectionProps) {
 
   const getCategoryCount = (categoryName: string) => {
     if (categoryName === "Все") {
@@ -17,58 +25,6 @@ export default function AppBodySection() {
     return mockCards.filter((product) => product.category === categoryName)
       .length;
   };
-
-  const handleDelete = (productId: string) => {
-    setMockCards((prev) => prev.filter((product) => product.id !== productId));
-  };
-
-  const [mockCards, setMockCards] = useState<Product[]>([
-    {
-      id: crypto.randomUUID(),
-      prices: [165, 175],
-      imageUrl: productPicture,
-      title: "Лейс с крабом",
-      stock: 19,
-      profit: 0,
-      category: "Чипсы",
-    },
-    {
-      id: crypto.randomUUID(),
-      prices: [165, 175],
-      imageUrl: productPicture,
-      title: "Лейс с крабом",
-      stock: 19,
-      profit: 0,
-      category: "Чипсы",
-    },
-    {
-      id: crypto.randomUUID(),
-      prices: [165, 175],
-      imageUrl: productPicture,
-      title: "Лейс с крабом",
-      stock: 19,
-      profit: 0,
-      category: "Чипсы",
-    },
-    {
-      id: crypto.randomUUID(),
-      prices: [165, 175],
-      imageUrl: productPicture,
-      title: "Лейс с крабом",
-      stock: 19,
-      profit: 0,
-      category: "Чипсы",
-    },
-    {
-      id: crypto.randomUUID(),
-      prices: [165, 175],
-      imageUrl: productPicture,
-      title: "Лейс с крабом",
-      stock: 19,
-      profit: 0,
-      category: "Чипсы",
-    },
-  ]);
 
   return (
     <div className="body-section">
