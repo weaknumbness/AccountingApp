@@ -1,5 +1,6 @@
 :root {
   --grey-color: #d3d3d3;
+  --more-gray-color:#707070;
   --main-color: #09172a;
   --side-color: #182437;
   --white-color: #fff;
@@ -14,7 +15,7 @@
     "GRAD" 0;
 }
 
-.main {
+.PageOfGoods {
   display: flex;
 }
 
@@ -141,9 +142,8 @@ header h2 {
   font-size: 25px;
 }
 
-.body-section {
+.goods-body-section {
   padding: 20px 30px;
-
 }
 
 #search-good {
@@ -544,4 +544,52 @@ header h2 {
   .secondary-button {
     width: 100%;
   }
+}
+
+.categories-section {
+  margin-left: 15%;
+}
+
+.stats {
+  margin: 20px 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--grey-color);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0px 2px 4px var(--grey-color);
+}
+
+.stat-pic {
+  color: white;
+  background-color: var(--main-color);
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.stat-description {
+  color: var(--more-gray-color);
+  font-size: 15px;
+}
+
+.stat-number {
+  font-size: 25px;
 }

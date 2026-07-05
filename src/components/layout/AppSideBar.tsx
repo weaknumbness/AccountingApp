@@ -1,7 +1,11 @@
 import { motion } from "motion/react";
 import logo from "../assets/Logo.png";
 
-export default function AppSideBar() {
+type AppSideBarProps = {
+  setActivePage: (pageTitle: string) => void;
+};
+
+export default function AppSideBar({setActivePage}:AppSideBarProps) {
   const User = {
     pic: "src",
     mail: "user@example.com",
@@ -22,7 +26,7 @@ export default function AppSideBar() {
           <div className="menu">
             <h2>МЕНЮ</h2>
             <ul>
-              <motion.li whileHover={{ scale: 1.02 }} whileTap={{ scale: 1.0 }}>
+              <motion.li whileHover={{ scale: 1.02 }} whileTap={{ scale: 1.0 }} onClick={() => setActivePage("Goods")}>
                 <div className="li-picture">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +41,7 @@ export default function AppSideBar() {
                 </div>
                 Товары
               </motion.li>
-              <motion.li whileHover={{ scale: 1.02 }} whileTap={{ scale: 1.0 }}>
+              <motion.li whileHover={{ scale: 1.02 }} whileTap={{ scale: 1.0 }} onClick={() => setActivePage("Categories")}>
                 <div className="li-picture">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

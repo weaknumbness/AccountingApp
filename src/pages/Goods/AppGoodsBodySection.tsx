@@ -2,22 +2,22 @@ import CategoryOfButtons from "../../features/categories/CategoryOfButtons";
 import Cards from "../../features/products/Cards";
 import type { Product } from "../../types";
 
-type AppBodySectionProps = {
+type AppGoodsBodySectionProps = {
   mockCards: Product[];
   handleDelete: (productId: string) => void;
   handleSale: (productId: string) => void;
   handleChange: (productId: string) => void;
   categories: string[];
+  getCategoryCount: (categoryName: string) => number;
 };
 
-export default function AppBodySection({
+export default function AppGoodsBodySection({
   mockCards,
   handleDelete,
   handleSale,
   handleChange,
-  categories
-}: AppBodySectionProps) {
-
+  categories,
+}: AppGoodsBodySectionProps) {
   const getCategoryCount = (categoryName: string) => {
     if (categoryName === "Все") {
       return mockCards.length;
@@ -27,7 +27,7 @@ export default function AppBodySection({
   };
 
   return (
-    <div className="body-section">
+    <div className="goods-body-section">
       <label id="search-good">
         <svg
           xmlns="http://www.w3.org/2000/svg"

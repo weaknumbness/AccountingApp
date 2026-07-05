@@ -57,3 +57,9 @@ export type ProductFormForInputs = {
   category: string;
 };
 
+export type Category = {
+  title: string;
+  stock: number;
+  profit: number;
+  count: number;
+};

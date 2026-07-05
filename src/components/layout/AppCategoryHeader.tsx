@@ -1,10 +1,9 @@
 import { motion } from "motion/react";
-type AppHeaderProps = {
-  onOpenModal: () => void;
+type AppCategoryHeaderProps = {
   title: string;
 };
 
-export function AppHeader({ onOpenModal, title }: AppHeaderProps) {
+export function AppCategoryHeader({ title }: AppCategoryHeaderProps) {
   return (
     <header>
       <h2>{title}</h2>
@@ -15,10 +14,9 @@ export function AppHeader({ onOpenModal, title }: AppHeaderProps) {
           className="add-button"
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.22 }}
-          onClick={onOpenModal}
         >
           <div className="plus">+</div>
-          <div className="add">Добавить товар</div>
+          <div className="add">Добавить категорию</div>
         </motion.button>
       </div>
     </header>
