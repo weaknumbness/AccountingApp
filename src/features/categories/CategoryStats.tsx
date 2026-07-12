@@ -1,11 +1,11 @@
-import { motion } from "motion/react";
-
 type CategoryStatsProps = {
   countOfCategories: number;
   generalStock: number;
   generalProfit: number;
   averageProfit: number;
 };
+
+const widthAndHeightOfSvg = 40;
 
 export default function CategoryStats({
   countOfCategories,
@@ -14,14 +14,14 @@ export default function CategoryStats({
   averageProfit,
 }: CategoryStatsProps) {
   return (
-    <motion.div className="stats">
+    <div className="stats">
       {/* Количество категорий */}
       <div className="stat count-of-categories">
         <div className="stat-pic">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width={widthAndHeightOfSvg}
+            height={widthAndHeightOfSvg}
             fill="currentColor"
             className="bi bi-folder"
             viewBox="0 0 16 16"
@@ -41,8 +41,8 @@ export default function CategoryStats({
         <div className="stat-pic">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width={widthAndHeightOfSvg}
+            height={widthAndHeightOfSvg}
             fill="currentColor"
             className="bi bi-box"
             viewBox="0 0 16 16"
@@ -61,8 +61,8 @@ export default function CategoryStats({
         <div className="stat-pic">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width={widthAndHeightOfSvg}
+            height={widthAndHeightOfSvg}
             fill="currentColor"
             className="bi bi-currency-dollar"
             viewBox="0 0 16 16"
@@ -81,8 +81,8 @@ export default function CategoryStats({
         <div className="stat-pic">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width={widthAndHeightOfSvg}
+            height={widthAndHeightOfSvg}
             fill="currentColor"
             className="bi bi-graph-up-arrow"
             viewBox="0 0 16 16"
@@ -99,6 +99,6 @@ export default function CategoryStats({
           <h3 className="stat-description">На категорию</h3>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

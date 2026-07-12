@@ -7,14 +7,32 @@ import "../styles/reset.css";
 import "../styles/newStyle.css";
 import productPicture from "../components/assets/LaysCrab.jpg";
 import PageOfGoods from "../pages/Goods/PageOfGoods";
-import type { Product } from "../types";
+import type {
+  Category,
+  CategoryWithStats,
+  Product,
+  CategoryFormData,
+} from "../types";
 import { useMemo, useState } from "react";
 import PageOfCategories from "../pages/Categories/PageOfCategories";
 
 function App() {
   const [activePage, setActivePage] = useState("Goods");
-
-  const [mockCards, setMockCards] = useState<Product[]>([
+  const [categories, setCategories] = useState<Category[]>(() => [
+    {
+      id: crypto.randomUUID(),
+      title: "Чипсы",
+      color: "#FEF3C7",
+      icon: "🥔",
+    },
+    {
+      id: crypto.randomUUID(),
+      title: "Напитки",
+      color: "#DBEAFE",
+      icon: "🥤",
+    },
+  ]);
+  const [mockCards, setMockCards] = useState<Product[]>(() => [
     {
       id: crypto.randomUUID(),
       prices: [165, 175],
@@ -70,35 +88,38 @@ function App() {
       .length;
   };
 
-  const categoryStats = useMemo(() => {
-    return mockCards.reduce<
-      Record<
-        string,
-        { title: string; stock: number; profit: number; count: number }
-      >
-    >((acc, product) => {
-      if (!acc[product.category]) {
-        acc[product.category] = {
-          title: product.category,
-          stock: 0,
-          profit: 0,
-          count: 0,
-        };
-      }
+  const categoriesWithStats: CategoryWithStats[] = useMemo(() => {
+    return categories.map((category) => {
+      const categoryProducts = mockCards.filter(
+        (product) => product.category === category.title,
+      );
 
-      acc[product.category].stock += product.stock;
-      acc[product.category].profit += product.profit;
-      acc[product.category].count += 1;
-
-      return acc;
-    }, {});
-  }, [mockCards]);
-
-  const categories = Object.values(categoryStats);
+      return {
+        ...category,
+        count: categoryProducts.length,
+        stock: categoryProducts.reduce(
+          (sum, product) => sum + product.stock,
+          0,
+        ),
+        profit: categoryProducts.reduce(
+          (sum, product) => sum + product.profit,
+          0,
+        ),
+      };
+    });
+  }, [categories, mockCards]);
 
   const handleSetActivePage = (pageTitle: string) => {
     setActivePage(pageTitle);
   };
+
+  const handleAddCategory = ({ title, color, icon }: CategoryFormData) => {
+    setCategories((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), title, color, icon },
+    ]);
+  };
+
   return (
     <div className="main">
       {activePage === "Goods" && (
@@ -107,11 +128,13 @@ function App() {
           mockCards={mockCards}
           setMockCards={setMockCards}
           getCategoryCount={handleGetCategoryStock}
+          categories={categories}
         />
       )}
       {activePage === "Categories" && (
         <PageOfCategories
-          categories={categories}
+          onCreateCategory={handleAddCategory}
+          categories={categoriesWithStats}
           setActivePage={handleSetActivePage}
         />
       )}

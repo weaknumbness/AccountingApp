@@ -1,7 +1,8 @@
+import type { Category } from "../../types";
 import CategoryButton from "./CategoryButton";
 
 type CategoriesProps = {
-  categories: string[];
+  categories: Category[];
   getCountsOfProducts: (categoryName: string) => number;
 };
 
@@ -18,7 +19,7 @@ export default function CategoryOfButtons({
       />
       {categories.map((button) => (
         <CategoryButton
-          title={button}
+          title={button.title}
           isActive={false}
           getCountsOfProducts={getCountsOfProducts}
         />

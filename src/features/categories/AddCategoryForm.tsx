@@ -1,65 +1,32 @@
-// import { motion, AnimatePresence } from "motion/react";
-// import type { ProductFormData } from "../../types";
-
-// type AddCardFormProps = {
-//   onClose: () => void;
-//   onSubmit: (formData: ProductFormData) => void;
-// };
-
-// export default function AddCardForm({ onClose, onSubmit }: AddCardFormProps) {
-//   return (
-//     <motion.div className="AddCardOpen">
-//       <AnimatePresence>
-//         <form action=""></form>
-//       </AnimatePresence>
-//     </motion.div>
-//   );
-// }
-
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "motion/react";
-import type {
-  Category,
-  ProductFormData,
-  ProductFormForInputs,
-} from "../../types";
+import type { Category, CategoryFormData } from "../../types";
 
 type AddCardFormProps = {
   onClose: () => void;
-  onSubmit: (formData: ProductFormData) => void;
-  categories: Category[];
+  onSubmit: (formData: CategoryFormData) => void;
 };
 
-export default function AddCardForm({
+export default function AddCategoryForm({
   onClose,
   onSubmit,
-  categories,
 }: AddCardFormProps) {
-  const [form, setForm] = useState<ProductFormForInputs>({
+  const [form, setForm] = useState<CategoryFormData>({
     title: "",
-    firstPrice: "",
-    secondPrice: "",
-    imageUrl: "",
-    stock: "",
-    category: "",
+    color: "#FEF3C7",
+    icon: "",
   });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const prices = [Number(form.firstPrice)];
-
-    if (form.secondPrice.trim() !== "" && form.secondPrice.trim() !== "0") {
-      prices.push(Number(form.secondPrice));
-    }
-
     onSubmit({
       title: form.title,
-      prices: prices,
-      category: form.category,
-      imageUrl: form.imageUrl,
-      stock: Number(form.stock),
+      color: form.color,
+      icon: form.icon[0],
     });
+
+    onClose();
   };
 
   const handleBackdropClick = () => {
@@ -78,8 +45,8 @@ export default function AddCardForm({
     }));
   };
 
-  const handleChangeSelect = (event: ChangeEvent<HTMLSelectElement>) =>
-    setForm((prevForm) => ({ ...prevForm, category: event.target.value }));
+  // const handleChangeSelect = (event: ChangeEvent<HTMLSelectElement>) =>
+  //   setForm((prevForm) => ({ ...prevForm, category: event.target.value }));
 
   return (
     <motion.div
@@ -99,8 +66,8 @@ export default function AddCardForm({
       >
         <div className="product-form-header">
           <div>
-            <h3>Добавить товар</h3>
-            <p>Заполни данные товара для учёта продаж</p>
+            <h3>Добавить Категорию</h3>
+            <p>Заполни данные категории</p>
           </div>
 
           <button
@@ -115,47 +82,42 @@ export default function AddCardForm({
 
         <form className="product-form" onSubmit={handleSubmit}>
           <label className="form-field">
-            <span>Название товара</span>
+            <span>Название категории</span>
             <input
               type="text"
               name="title"
               value={form.title}
               onChange={handleChangeInput}
-              placeholder="Например: Лейс с крабом"
+              placeholder="Например: Чипсы"
               required
             />
           </label>
 
           <label className="form-field">
-            <span>Категория</span>
-            <select
-              name="category"
-              className="form-select"
-              onChange={handleChangeSelect}
-              required
-            >
-              <option value="-" disabled selected>
-                -
-              </option>
-              {categories.map((category) => (
-                <option value={category.title}>{category.title}</option>
-              ))}
-            </select>
+            <span>Цвет</span>
+            <input
+              type="color"
+              name="color"
+              id="colorInput"
+              value={form.color}
+              onChange={handleChangeInput}
+              placeholder="Цвет категории"
+            />
           </label>
 
           <label className="form-field">
-            <span>Ссылка на картинку</span>
+            <span>Иконка</span>
             <input
               type="text"
-              name="imageUrl"
-              value={form.imageUrl}
+              name="icon"
+              value={form.icon}
               onChange={handleChangeInput}
-              placeholder="URL картинки"
+              placeholder="Иконка категории (emoji)"
               required
             />
           </label>
 
-          <div className="form-row">
+          {/* <div className="form-row">
             <label className="form-field">
               <span>Остаток</span>
               <input
@@ -193,7 +155,7 @@ export default function AddCardForm({
                 min="0"
               />
             </label>
-          </div>
+          </div> */}
 
           <div className="product-form-actions">
             <button
@@ -205,7 +167,7 @@ export default function AddCardForm({
             </button>
 
             <button type="submit" className="primary-button">
-              Добавить товар
+              Добавить категорию
             </button>
           </div>
         </form>

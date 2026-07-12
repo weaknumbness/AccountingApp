@@ -2,18 +2,22 @@ import { useState } from "react";
 import AppGoodsBodySection from "./AppGoodsBodySection";
 import { AnimatePresence } from "motion/react";
 import { AppHeader } from "../../components/layout/AppHeader";
-import type { Product, ProductFormData } from "../../types";
+import type { Category, Product, ProductFormData } from "../../types";
 import AddCardForm from "../../features/products/AddCardForm";
 
 type AppGoodsSectionProps = {
   mockCards: Product[];
   setMockCards: React.Dispatch<React.SetStateAction<Product[]>>;
   getCategoryCount: (categoryName: string) => number;
+  categories: Category[];
 };
 
-export default function AppGoodsSection({mockCards, setMockCards, getCategoryCount}:AppGoodsSectionProps) {
-  const categories = ["Чипсы", "Напитки", "Шоколад"];
-
+export default function AppGoodsSection({
+  mockCards,
+  setMockCards,
+  getCategoryCount,
+  categories,
+}: AppGoodsSectionProps) {
   const handleDelete = (productId: string) => {
     setMockCards((prev) => prev.filter((product) => product.id !== productId));
   };

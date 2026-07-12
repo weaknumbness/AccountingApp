@@ -38,6 +38,7 @@ export type ProductCardProps = {
   onDelete: (productId: string) => void;
   onChange: (productId: string) => void;
   onSale: (productId: string, price: number) => void;
+  categories: Category[];
 };
 
 export type ProductFormData = {
@@ -58,8 +59,22 @@ export type ProductFormForInputs = {
 };
 
 export type Category = {
+  id: string;
   title: string;
+  color: string;
+  icon: string;
+  imageUrl?: string;
+};
+
+export type CategoryFormData = {
+  title: string;
+  color: string;
+  icon: string;
+  imageUrl?: string;
+};
+
+export type CategoryWithStats = Category & {
+  count: number;
   stock: number;
   profit: number;
-  count: number;
 };

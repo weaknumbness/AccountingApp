@@ -18,6 +18,7 @@ export default function Card({
   onDelete,
   onChange,
   onSale,
+  categories,
 }: ProductCardProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -29,6 +30,10 @@ export default function Card({
     onDelete(product.id);
     setIsDropdownOpen(false);
   };
+
+  const categoryColor = categories.find(
+    (category) => category.title === product.category,
+  )?.color;
 
   return (
     <motion.div
@@ -55,7 +60,12 @@ export default function Card({
         </div>
         <div className="card-titleAndCategory">
           <div className="card-title">{product.title}</div>
-          <div className="card-category">{product.category}</div>
+          <div
+            className="card-category"
+            style={{ backgroundColor: categoryColor, color: "black" }}
+          >
+            {product.category}
+          </div>
         </div>
         <div className="card-dropdown">
           <button

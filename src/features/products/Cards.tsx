@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, stagger } from "motion/react";
-import type { Product } from "../../types";
+import type { Category, Product } from "../../types";
 import Card from "./Card";
 
 type CardsProps = {
@@ -7,6 +7,7 @@ type CardsProps = {
   onDelete: (productId: string) => void;
   onChange: (productId: string) => void;
   onSale: (productId: string, price: number) => void;
+  categories: Category[];
 };
 
 const cardsVariants = {
@@ -23,6 +24,7 @@ export default function Cards({
   onDelete,
   onChange,
   onSale,
+  categories
 }: CardsProps) {
   return (
     <motion.div
@@ -39,6 +41,7 @@ export default function Cards({
             onDelete={onDelete}
             onChange={onChange}
             onSale={onSale}
+            categories={categories}
           />
         ))}
       </AnimatePresence>

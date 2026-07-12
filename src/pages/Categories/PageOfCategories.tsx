@@ -1,20 +1,25 @@
 import AppSideBar from "../../components/layout/AppSideBar";
-import type { Category } from "../../types";
+import type { CategoryFormData, CategoryWithStats } from "../../types";
 import AppCategoriesSection from "./AppCategoriesSection";
 
 type PageOfCategoriesProps = {
-  categories: Category[];
+  categories: CategoryWithStats[];
   setActivePage: (pageTitle: string) => void;
+  onCreateCategory: ({ title, color, icon }: CategoryFormData) => void;
 };
 
 export default function PageOfCategories({
   categories,
-  setActivePage
+  setActivePage,
+  onCreateCategory,
 }: PageOfCategoriesProps) {
   return (
     <div className="Page-of-categories">
       <AppSideBar setActivePage={setActivePage} />
-      <AppCategoriesSection categories={categories} />
+      <AppCategoriesSection
+        categories={categories}
+        onCreateCategory={onCreateCategory}
+      />
     </div>
   );
 }

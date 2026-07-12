@@ -1,6 +1,6 @@
 :root {
   --grey-color: #d3d3d3;
-  --more-gray-color:#707070;
+  --more-gray-color: #707070;
   --main-color: #09172a;
   --side-color: #182437;
   --white-color: #fff;
@@ -142,11 +142,11 @@ header h2 {
   font-size: 25px;
 }
 
-.goods-body-section {
+.body-section {
   padding: 20px 30px;
 }
 
-#search-good {
+#search-input {
   border: 1px solid #d3d3d3;
   border-radius: 5px;
   padding: 10px 15px;
@@ -157,12 +157,18 @@ header h2 {
   gap: 10px;
   color: #808080;
   margin-bottom: 25px;
+  cursor: text;
 }
 
-#search-good input {
+#search-input input,
+#sort select {
   background: #f5f5f5;
   font-size: 16px;
   color: #808080;
+}
+
+#sort select {
+  cursor: pointer;
 }
 
 .category-buttons {
@@ -551,7 +557,7 @@ header h2 {
 }
 
 .stats {
-  margin: 20px 25px;
+  margin: 20px 0px 30px 0px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
@@ -559,7 +565,6 @@ header h2 {
 
 .stat {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 15px;
   border: 1px solid var(--grey-color);
@@ -592,4 +597,107 @@ header h2 {
 
 .stat-number {
   font-size: 25px;
+}
+
+.tools #search-input {
+  margin: 0px;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  justify-content: space-between;
+}
+
+#sort {
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #808080;
+}
+
+#sort select {
+  height: 100%;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.category {
+  border-radius: 10px;
+  border: 1px solid var(--grey-color);
+  padding: 20px;
+  box-shadow: 0px 2px 4px var(--grey-color);
+}
+
+.category-top-info,
+.category-title {
+  display: flex;
+}
+
+.category-title .card-dropdown {
+  padding: 0px;
+}
+
+.category-top-info {
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.category-pic {
+  font-size: 40px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.category-first-info h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.category-first-info p {
+  font-size: 15px;
+  color: var(--more-gray-color);
+}
+
+.category-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.category-down-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-down-title {
+  color: var(--more-gray-color);
+  padding-bottom: 10px;
+}
+
+.profit-profit,
+.stock-stock {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.profit-profit {
+  color: rgb(20, 170, 0);
+}
+
+#colorInput {
+  padding: 0px 12px;
 }
