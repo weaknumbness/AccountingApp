@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "motion/react";
-import type { Category, CategoryFormData } from "../../types";
+import type { CategoryFormData } from "../../types";
 
 type AddCardFormProps = {
   onClose: () => void;
@@ -44,9 +44,6 @@ export default function AddCategoryForm({
       [name]: value,
     }));
   };
-
-  // const handleChangeSelect = (event: ChangeEvent<HTMLSelectElement>) =>
-  //   setForm((prevForm) => ({ ...prevForm, category: event.target.value }));
 
   return (
     <motion.div
@@ -116,47 +113,6 @@ export default function AddCategoryForm({
               required
             />
           </label>
-
-          {/* <div className="form-row">
-            <label className="form-field">
-              <span>Остаток</span>
-              <input
-                type="number"
-                name="stock"
-                value={form.stock}
-                onChange={handleChangeInput}
-                placeholder="19"
-                min="0"
-                required
-              />
-            </label>
-
-            <label className="form-field">
-              <span>Цена 1</span>
-              <input
-                type="number"
-                name="firstPrice"
-                value={form.firstPrice}
-                onChange={handleChangeInput}
-                placeholder="165"
-                min="0"
-                required
-              />
-            </label>
-
-            <label className="form-field">
-              <span>Цена 2</span>
-              <input
-                type="number"
-                name="secondPrice"
-                value={form.secondPrice}
-                onChange={handleChangeInput}
-                placeholder="175"
-                min="0"
-              />
-            </label>
-          </div> */}
-
           <div className="product-form-actions">
             <button
               type="button"

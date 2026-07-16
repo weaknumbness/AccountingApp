@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, stagger } from "motion/react";
 import type { Category, Product } from "../../types";
 import Card from "./Card";
+import type { animate } from "motion";
 
 type CardsProps = {
   cards: Product[];
@@ -24,7 +25,7 @@ export default function Cards({
   onDelete,
   onChange,
   onSale,
-  categories
+  categories,
 }: CardsProps) {
   return (
     <motion.div
@@ -34,16 +35,25 @@ export default function Cards({
       variants={cardsVariants}
     >
       <AnimatePresence mode="popLayout">
-        {cards.map((card) => (
-          <Card
-            key={card.id}
-            product={card}
-            onDelete={onDelete}
-            onChange={onChange}
-            onSale={onSale}
-            categories={categories}
-          />
-        ))}
+        {cards.length !== 0 ?
+          cards.map((card) => (
+            <Card
+              key={card.id}
+              product={card}
+              onDelete={onDelete}
+              onChange={onChange}
+              onSale={onSale}
+              categories={categories}
+            />
+          ))
+        : <motion.h2
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1, transition: { duration: 0.7 } }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+          >
+            Товары не найдены...
+          </motion.h2>
+        }
       </AnimatePresence>
     </motion.div>
   );

@@ -24,9 +24,18 @@ export default function Categories({ categories }: CategoriesProps) {
       variants={cardsVariants}
     >
       <AnimatePresence>
-        {categories.map((category) => (
-          <CategoryCard key={category.id} category={category} />
-        ))}
+        {categories.length !== 0 ?
+          categories.map((category) => (
+            <CategoryCard key={category.id} category={category} />
+          ))
+        : <motion.h2
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1, transition: { duration: 0.7 } }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+          >
+            Категории не найдены...
+          </motion.h2>
+        }
       </AnimatePresence>
     </motion.div>
   );
