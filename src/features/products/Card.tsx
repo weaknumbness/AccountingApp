@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import type { ProductCardProps } from "../../types";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const cardVariants = {
   hidden: {
@@ -35,6 +35,35 @@ export default function Card({
     (category) => category.title === product.category,
   )?.color;
 
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!isDropdownOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isDropdownOpen]);
+
   return (
     <motion.div
       className="card"
@@ -67,7 +96,7 @@ export default function Card({
             {product.category}
           </div>
         </div>
-        <div className="card-dropdown">
+        <div className="card-dropdown" ref={dropdownRef}>
           <button
             className="card-dropdown-button"
             onClick={handleToggleDropdown}

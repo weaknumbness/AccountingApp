@@ -1,8 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { onAuthStateChanged, signOut, type User } from "firebase/auth";
-// import { auth } from "../services/firebase/firebase";
-// import { AuthPage } from "../features/auth/AuthPage";
-// import { AppHeader } from "../components/layout/AppHeader";
 import "../styles/reset.css";
 import "../styles/newStyle.css";
 import productPicture from "../components/assets/LaysCrab.jpg";

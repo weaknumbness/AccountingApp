@@ -27,18 +27,26 @@ export default function AppGoodsBodySection({
       .length;
   };
 
+  const [activeCategory, setActiveCategory] = useState("Все");
+
   const [searchValue, setSearchValue] = useState("");
-  const filteredProducts = useMemo(() => {
+
+  const filteredProduct =
+    activeCategory === "Все" ? mockCards : (
+      mockCards.filter((product) => product.category === activeCategory)
+    );
+
+  const searchedProducts = useMemo(() => {
     const normalizedSearch = searchValue.toLowerCase().trim();
 
     if (!normalizedSearch) {
-      return mockCards;
+      return filteredProduct;
     }
 
-    return mockCards.filter((product) =>
+    return filteredProduct.filter((product) =>
       product.title.toLowerCase().includes(normalizedSearch),
     );
-  }, [mockCards, searchValue]);
+  }, [filteredProduct, searchValue]);
 
   return (
     <div className="body-section">
@@ -64,11 +72,13 @@ export default function AppGoodsBodySection({
         <CategoryOfButtons
           categories={categories}
           getCountsOfProducts={getCategoryCount}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
         />
       </div>
       <div className="cards-section">
         <Cards
-          cards={filteredProducts}
+          cards={searchedProducts}
           onChange={handleChange}
           onSale={handleSale}
           onDelete={handleDelete}
