@@ -8,6 +8,7 @@ type PageOfGoodsProps = {
   getCategoryCount: (categoryName: string) => number;
   setActivePage: (pageTitle: string) => void;
   categories: Category[];
+  handleEditCard: (product: Product) => void;
 };
 
 export default function PageOfGoods({
@@ -15,7 +16,8 @@ export default function PageOfGoods({
   setMockCards,
   getCategoryCount,
   setActivePage,
-  categories
+  categories,
+  handleEditCard
 }: PageOfGoodsProps) {
   return (
     <div className="PageOfGoods">
@@ -25,6 +27,7 @@ export default function PageOfGoods({
         setMockCards={setMockCards}
         getCategoryCount={getCategoryCount}
         categories={categories}
+        handleEditCard={handleEditCard}
       />
     </div>
   );

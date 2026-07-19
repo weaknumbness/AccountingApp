@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
 import type { ProductCardProps } from "../../types";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import EditCardForm from "./EditCardForm";
 
 const cardVariants = {
   hidden: {
@@ -19,6 +21,7 @@ export default function Card({
   onChange,
   onSale,
   categories,
+  handleOpenEditForm,
 }: ProductCardProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -114,7 +117,11 @@ export default function Card({
           </button>
           {isDropdownOpen && (
             <div className="card-dropdown-menu">
-              <button type="button" className="card-dropdown-item">
+              <button
+                type="button"
+                className="card-dropdown-item"
+                onClick={() => handleOpenEditForm(product)}
+              >
                 Редактировать
               </button>
 

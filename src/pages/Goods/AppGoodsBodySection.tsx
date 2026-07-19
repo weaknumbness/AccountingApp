@@ -10,6 +10,8 @@ type AppGoodsBodySectionProps = {
   handleChange: (productId: string) => void;
   categories: Category[];
   getCategoryCount: (categoryName: string) => number;
+  handleEditCard: (product: Product) => void;
+  handleOpenEditForm: (prod: Product) => void;
 };
 
 export default function AppGoodsBodySection({
@@ -18,6 +20,8 @@ export default function AppGoodsBodySection({
   handleSale,
   handleChange,
   categories,
+  handleEditCard,
+  handleOpenEditForm,
 }: AppGoodsBodySectionProps) {
   const getCategoryCount = (categoryName: string) => {
     if (categoryName === "Все") {
@@ -83,6 +87,8 @@ export default function AppGoodsBodySection({
           onSale={handleSale}
           onDelete={handleDelete}
           categories={categories}
+          handleEditCard={handleEditCard}
+          handleOpenEditForm={handleOpenEditForm}
         />
       </div>
     </div>
