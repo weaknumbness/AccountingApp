@@ -2,28 +2,30 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "motion/react";
 import type {
   Category,
-  ProductFormData,
+  Product,
   ProductFormForInputs,
 } from "../../types";
 
-type AddCardFormProps = {
+type EditCardForm = {
   onClose: () => void;
-  onSubmit: (formData: ProductFormData) => void;
+  onSubmit: (formData: Product) => void;
   categories: Category[];
+  product: Product;
 };
 
-export default function AddCardForm({
+export default function EditCardForm({
   onClose,
   onSubmit,
   categories,
-}: AddCardFormProps) {
+  product,
+}: EditCardForm) {
   const [form, setForm] = useState<ProductFormForInputs>({
-    title: "",
-    firstPrice: "",
-    secondPrice: "",
-    imageUrl: "",
-    stock: "",
-    category: "",
+    title: product.title,
+    firstPrice: String(product.prices[0]),
+    secondPrice: String(product.prices[1]),
+    imageUrl: product.imageUrl,
+    stock: String(product.stock),
+    category: product.category,
   });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -36,12 +38,16 @@ export default function AddCardForm({
     }
 
     onSubmit({
+      id: product.id,
       title: form.title,
       prices: prices,
-      category: form.category,
       imageUrl: form.imageUrl,
       stock: Number(form.stock),
+      category: form.category,
+      profit: product.profit,
     });
+
+    onClose();
   };
 
   const handleBackdropClick = () => {
@@ -81,7 +87,7 @@ export default function AddCardForm({
       >
         <div className="product-form-header">
           <div>
-            <h3>Добавить товар</h3>
+            <h3>Изменить товар</h3>
             <p>Заполни данные товара для учёта продаж</p>
           </div>
 
@@ -114,6 +120,7 @@ export default function AddCardForm({
               name="category"
               className="form-select"
               onChange={handleChangeSelect}
+              value={form.category}
               required
             >
               <option value="-" disabled selected>
@@ -187,7 +194,7 @@ export default function AddCardForm({
             </button>
 
             <button type="submit" className="primary-button">
-              Добавить товар
+              Сохранить товар
             </button>
           </div>
         </form>

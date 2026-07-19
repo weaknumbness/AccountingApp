@@ -39,6 +39,8 @@ export type ProductCardProps = {
   onChange: (productId: string) => void;
   onSale: (productId: string, price: number) => void;
   categories: Category[];
+  handleEditCard: (product: Product) => void;
+  handleOpenEditForm: (prod: Product) => void;
 };
 
 export type ProductFormData = {

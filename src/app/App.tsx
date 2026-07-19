@@ -115,6 +115,14 @@ function App() {
     ]);
   };
 
+  const handleEditCard = (product: Product) => {
+    setMockCards((prevProducts) =>
+      prevProducts.map((prevProduct) =>
+        prevProduct.id === product.id ? product : prevProduct,
+      ),
+    );
+  };
+
   return (
     <div className="main">
       {activePage === "Goods" && (
@@ -124,6 +132,7 @@ function App() {
           setMockCards={setMockCards}
           getCategoryCount={handleGetCategoryStock}
           categories={categories}
+          handleEditCard={handleEditCard}
         />
       )}
       {activePage === "Categories" && (
