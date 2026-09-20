@@ -1,0 +1,30 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "accountingV2": {
+          ".write": "auth != null && auth.uid === $uid",
+          ".validate": "newData.hasChildren(['version', 'startedAt', 'legacyImported']) && newData.child('version').val() === 2",
+          "products": {
+            "$id": {
+              ".validate": "newData.hasChildren(['id', 'title', 'categoryId', 'stock', 'price', 'revenue', 'sold']) && newData.child('id').val() === $id && newData.child('stock').isNumber() && newData.child('stock').val() >= 0 && newData.child('stock').val() % 1 === 0 && newData.child('price').isNumber() && newData.child('price').val() >= 0"
+            }
+          },
+          "sales": {
+            "$id": {
+              ".validate": "!data.exists() || (newData.child('id').val() === data.child('id').val() && newData.child('productId').val() === data.child('productId').val() && newData.child('title').val() === data.child('title').val() && newData.child('categoryId').val() === data.child('categoryId').val() && newData.child('quantity').val() === data.child('quantity').val() && newData.child('price').val() === data.child('price').val() && newData.child('cost').val() === data.child('cost').val() && newData.child('createdAt').val() === data.child('createdAt').val() && newData.child('priceKind').val() === data.child('priceKind').val())"
+            }
+          },
+          "receipts": {
+            "$id": {
+              ".validate": "!data.exists() || (newData.child('id').val() === data.child('id').val() && newData.child('productId').val() === data.child('productId').val() && newData.child('title').val() === data.child('title').val() && newData.child('quantity').val() === data.child('quantity').val() && newData.child('unitCost').val() === data.child('unitCost').val() && newData.child('createdAt').val() === data.child('createdAt').val())"
+            }
+          }
+        }
+      }
+    }
+  }
+}
