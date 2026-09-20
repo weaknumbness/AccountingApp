@@ -1,0 +1,43 @@
+ accounting-vite/.env.example                       |    7 [32m+[m
+ accounting-vite/.gitignore                         |   32 [32m+[m
+ accounting-vite/README.md                          |  105 [32m+[m
+ accounting-vite/database.rules.json                |   30 [32m+[m
+ accounting-vite/e2e/accounting.spec.ts             |  172 [32m+[m
+ accounting-vite/e2e/auth.spec.ts                   |   51 [32m+[m
+ accounting-vite/eslint.config.js                   |   22 [32m+[m
+ accounting-vite/index.html                         |   21 [32m+[m
+ accounting-vite/package-lock.json                  | 4140 [32m++++++++++++++++++++[m
+ accounting-vite/package.json                       |   38 [32m+[m
+ accounting-vite/playwright.config.ts               |   20 [32m+[m
+ accounting-vite/public/favicon.svg                 |    1 [32m+[m
+ accounting-vite/public/icons.svg                   |   24 [32m+[m
+ accounting-vite/src/app/App.tsx                    |  131 [32m+[m
+ accounting-vite/src/app/Dashboard.tsx              |  550 [32m+++[m
+ accounting-vite/src/components/assets/LaysCrab.jpg |  Bin [31m0[m -> [32m726090[m bytes
+ accounting-vite/src/components/assets/Logo.png     |  Bin [31m0[m -> [32m684225[m bytes
+ .../src/components/layout/AppSideBar.tsx           |   64 [32m+[m
+ accounting-vite/src/components/layout/Modal.tsx    |   87 [32m+[m
+ accounting-vite/src/domain/accounting.ts           |  366 [32m++[m
+ accounting-vite/src/features/Reports.tsx           |  237 [32m++[m
+ accounting-vite/src/features/auth/AuthPage.tsx     |  176 [32m+[m
+ .../src/features/categories/CategoryForm.tsx       |   91 [32m+[m
+ accounting-vite/src/features/products/Card.tsx     |  216 [32m+[m
+ .../src/features/products/DeleteProductDialog.tsx  |   40 [32m+[m
+ .../src/features/products/ProductForm.tsx          |  163 [32m+[m
+ .../src/features/products/ReceiptForm.tsx          |  102 [32m+[m
+ accounting-vite/src/main.tsx                       |    9 [32m+[m
+ accounting-vite/src/services/accountingService.ts  |  162 [32m+[m
+ accounting-vite/src/services/authService.ts        |   16 [32m+[m
+ accounting-vite/src/services/firebase/firebase.ts  |   22 [32m+[m
+ accounting-vite/src/styles/complete.css            |  603 [32m+++[m
+ accounting-vite/src/styles/newStyle.css            |  703 [32m++++[m
+ accounting-vite/src/styles/reset.css               |   18 [32m+[m
+ accounting-vite/src/styles/style.css               |  666 [32m++++[m
+ accounting-vite/tests/accounting.test.ts           |  296 [32m++[m
+ accounting-vite/tests/auth.test.ts                 |   65 [32m+[m
+ accounting-vite/tsconfig.app.json                  |   28 [32m+[m
+ accounting-vite/tsconfig.json                      |    7 [32m+[m
+ accounting-vite/tsconfig.node.json                 |   24 [32m+[m
+ accounting-vite/vite.config.ts                     |    3 [32m+[m
+ accounting-vite/vitest.config.ts                   |    2 [32m+[m
+ 42 files changed, 9510 insertions(+)
