@@ -1,174 +1,216 @@
+import { memo, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import type { ProductCardProps } from "../../types";
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence } from "motion/react";
-import EditCardForm from "./EditCardForm";
-
-const cardVariants = {
-  hidden: {
-    y: 20,
-    opacity: 0,
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
+import { money, type Product, type Category } from "../../domain/accounting";
+import type { RunCommand } from "./ProductForm";
+import { errorMessage } from "../../services/accountingService";
+import placeholder from "../../components/assets/LaysCrab.jpg";
+type Props = {
+  product: Product;
+  category: Category | undefined;
+  run: RunCommand;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 };
-
-export default function Card({
-  product,
+export default memo(function Card({
+  product: p,
+  category,
+  run,
+  onEdit,
   onDelete,
-  onChange,
-  onSale,
-  categories,
-  handleOpenEditForm,
-}: ProductCardProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const handleToggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
-
-  const handleDeleteClick = () => {
-    onDelete(product.id);
-    setIsDropdownOpen(false);
-  };
-
-  const categoryColor = categories.find(
-    (category) => category.title === product.category,
-  )?.color;
-
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-
+}: Props) {
+  const [open, setOpen] = useState(false),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const locked = useRef(false);
+  const menu = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!isDropdownOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsDropdownOpen(false);
-      }
+    if (!open) return;
+    const outside = (e: MouseEvent) => {
+      if (e.target instanceof Node && !menu.current?.contains(e.target))
+        setOpen(false);
     };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsDropdownOpen(false);
-      }
+    const escape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-
+    document.addEventListener("mousedown", outside);
+    document.addEventListener("keydown", escape);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("mousedown", outside);
+      document.removeEventListener("keydown", escape);
     };
-  }, [isDropdownOpen]);
-
+  }, [open]);
+  async function sell(kind: "regular" | "friend") {
+    if (locked.current) return;
+    locked.current = true;
+    setBusy(true);
+    setError("");
+    try {
+      await run({
+        type: "sale",
+        id: crypto.randomUUID(),
+        productId: p.id,
+        priceKind: kind,
+        expectedPrice: kind === "regular" ? p.price : (p.friendPrice ?? 0),
+        createdAt: Date.now(),
+      });
+    } catch (e) {
+      setError(errorMessage(e));
+    } finally {
+      locked.current = false;
+      setBusy(false);
+    }
+  }
+  async function archive() {
+    if (locked.current) return;
+    locked.current = true;
+    setBusy(true);
+    setError("");
+    try {
+      await run({ type: "archive", id: p.id, archived: !p.archived });
+    } catch (e) {
+      setError(errorMessage(e));
+    } finally {
+      locked.current = false;
+      setBusy(false);
+      setOpen(false);
+    }
+  }
   return (
-    <motion.div
+    <motion.article
       className="card"
-      layout
-      variants={cardVariants}
-      exit={{
-        opacity: 0,
-        scale: 0.9,
-        y: -12,
-        filter: "blur(4px)",
-      }}
-      transition={{
-        duration: 0.22,
-        ease: "easeOut",
-      }}
-      whileHover={{
-        y: -4,
-      }}
+      data-product-id={p.id}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      whileHover={{ y: -3 }}
     >
       <div className="card-header">
         <div className="card-image">
-          <img src={product.imageUrl} alt="" />
+          {p.imageUrl ? (
+            <img
+              src={p.imageUrl}
+              alt={p.title}
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = placeholder;
+              }}
+            />
+          ) : (
+            <div className="product-placeholder" aria-hidden="true">
+              {p.title.slice(0, 2).toUpperCase()}
+            </div>
+          )}
         </div>
         <div className="card-titleAndCategory">
-          <div className="card-title">{product.title}</div>
+          <h3 className="card-title">{p.title}</h3>
           <div
             className="card-category"
-            style={{ backgroundColor: categoryColor, color: "black" }}
+            style={{
+              backgroundColor: category?.color ?? "#DBEAFE",
+              color: "#09172a",
+            }}
           >
-            {product.category}
+            {category?.title ?? "Категория"}
           </div>
         </div>
-        <div className="card-dropdown" ref={dropdownRef}>
+        <div className="card-dropdown" ref={menu}>
           <button
+            type="button"
             className="card-dropdown-button"
-            onClick={handleToggleDropdown}
+            aria-label={`Действия: ${p.title}`}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-three-dots-vertical"
-              viewBox="0 0 16 16"
-            >
-              <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-            </svg>
+            ⋮
           </button>
-          {isDropdownOpen && (
+          {open && (
             <div className="card-dropdown-menu">
               <button
                 type="button"
                 className="card-dropdown-item"
-                onClick={() => handleOpenEditForm(product)}
+                onClick={() => {
+                  setOpen(false);
+                  onEdit(p.id);
+                }}
               >
                 Редактировать
               </button>
-
               <button
                 type="button"
                 className="card-dropdown-item card-dropdown-item-danger"
-                onClick={handleDeleteClick}
+                disabled={busy}
+                onClick={() => void archive()}
               >
-                Удалить
+                {p.archived ? "Восстановить" : "В архив"}
               </button>
+              {p.archived && <button type="button"
+                className="card-dropdown-item card-dropdown-item-danger"
+                disabled={busy} onClick={() => { setOpen(false); onDelete(p.id); }}>
+                Удалить
+              </button>}
             </div>
           )}
         </div>
       </div>
       <div className="card-data">
-        <div className="card-price">
-          {product.prices.length === 2 ?
-            <>
-              <p>Цены:</p>
-              <div className="prices">
-                <div>{product.prices[0]}Р, </div>{" "}
-                <div>{product.prices[1]}Р</div>
-              </div>
-            </>
-          : <>
-              <p>Цены:</p> <div>{product.prices[0]} Р</div>
-            </>
-          }
+        <div className="card-stock">
+          <p>Остаток:</p>
+          <span data-stock>{p.stock} шт.</span>
         </div>
         <div className="card-stock">
-          <p>Остаток:</p> <span>{product.stock}шт.</span>
+          <p>Продано{p.legacy ? " с перехода" : ""}:</p>
+          <span>{p.sold} шт.</span>
         </div>
         <div className="card-profit">
-          <p>Прибыль:</p> <span>{product.profit}Р.</span>
+          <p>Выручка:</p>
+          <span>{money(p.openingRevenue + p.revenue)}</span>
         </div>
+        <div className="card-profit">
+          <p>Валовая прибыль:</p>
+          <span>
+            {money(p.knownProfit)}
+            {p.unknownCostSold || p.legacy ? " *" : ""}
+          </span>
+        </div>
+        {(p.unknownCostSold > 0 || p.legacy) && (
+          <small className="muted">
+            * По продажам с известной себестоимостью.
+          </small>
+        )}
       </div>
-      <div className="card-buttons">
-        {product.prices.length === 2 ?
-          <>
-            <button className="card-button">{product.prices[0]}Р</button>
-            <button className="card-button">{product.prices[1]}Р</button>
-          </>
-        : <>
-            <button className="card-button">{product.prices[0]}Р</button>
-          </>
-        }
-      </div>
-    </motion.div>
+      {!p.archived && (
+        <div className="card-buttons">
+          <button
+            type="button"
+            className="card-button"
+            disabled={busy || p.stock === 0}
+            onClick={() => void sell("regular")}
+            aria-label={`Продать ${p.title} за ${money(p.price)}`}
+          >
+            <span>{money(p.price)}</span>
+            <small>Обычная</small>
+          </button>
+          {p.friendPrice !== null && (
+            <button
+              type="button"
+              className="card-button friend-button"
+              disabled={busy || p.stock === 0}
+              onClick={() => void sell("friend")}
+              aria-label={`Продать ${p.title} для друзей за ${money(p.friendPrice)}`}
+            >
+              <span>{money(p.friendPrice)}</span>
+              <small>Для друзей</small>
+            </button>
+          )}
+        </div>
+      )}
+      {error && (
+        <p role="alert" className="error">
+          {error}
+        </p>
+      )}
+    </motion.article>
   );
-}
+});
