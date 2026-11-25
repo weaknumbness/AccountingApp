@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { storefrontSchema } from "./catalog";
 const amount = z.number().int().nonnegative().max(1_000_000_000_000);
 const count = z.number().int().nonnegative().max(1_000_000_000);
 const id = z
@@ -55,6 +56,7 @@ const dictionary = <T extends z.ZodType>(schema: T) =>
   z.preprocess((v) => (v == null ? {} : v), z.record(id, schema));
 export const stateSchema = z.object({
   version: z.literal(2),
+  storefront: storefrontSchema.default({ enabled: false, title: "Ассортимент" }),
   startedAt: z.number(),
   legacyImported: z.boolean(),
   products: dictionary(productSchema),
@@ -73,6 +75,7 @@ export type ProductInput = Pick<
 >;
 export type CategoryInput = Omit<Category, "id">;
 export type Command =
+  | { type: "storefront"; enabled: boolean; title: string }
   | { type: "product"; id: string; input: ProductInput; openingCost?: number }
   | { type: "deleteProduct"; id: string }
   | { type: "archive"; id: string; archived: boolean }
@@ -97,6 +100,7 @@ export type Command =
 export function emptyState(now = Date.now()): AccountingState {
   return {
     version: 2,
+    storefront: { enabled: false, title: "Ассортимент" },
     startedAt: now,
     legacyImported: false,
     products: {},
@@ -134,6 +138,8 @@ export function applyCommand(
   s: AccountingState,
   cmd: Command,
 ): AccountingState {
+  if (cmd.type === "storefront")
+    return { ...s, storefront: storefrontSchema.parse(cmd) };
   if (cmd.type === "category") {
     const category = categorySchema.parse({ ...cmd.input, id: cmd.id });
     if (

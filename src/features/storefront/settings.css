@@ -1,0 +1,10 @@
+.storefront-settings { margin-top: 28px; border: 1px solid #dce2e9; border-radius: 16px; padding: 24px; display: grid; gap: 16px; }
+.storefront-settings-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.storefront-settings-heading h3 { font-size: 20px; }
+.storefront-settings-heading span { font-size: 14px; background: #edf2f7; padding: 6px 10px; border-radius: 8px; }
+.storefront-settings p { line-height: 1.6; }
+.storefront-title { display: grid; gap: 8px; font-size: 14px; min-width: 0; }
+.storefront-title input { box-sizing: border-box; min-width: 0; width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; }
+.storefront-settings-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.storefront-settings-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+@media(max-width: 700px) { .storefront-settings { padding: 16px; } }

@@ -22,6 +22,57 @@
             "$id": {
               ".validate": "!data.exists() || (newData.child('id').val() === data.child('id').val() && newData.child('productId').val() === data.child('productId').val() && newData.child('title').val() === data.child('title').val() && newData.child('quantity').val() === data.child('quantity').val() && newData.child('unitCost').val() === data.child('unitCost').val() && newData.child('createdAt').val() === data.child('createdAt').val())"
             }
+          },
+          "storefront": {
+            ".validate": "newData.hasChildren(['enabled', 'title'])",
+            "enabled": {
+              ".validate": "newData.isBoolean()"
+            },
+            "title": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 80"
+            },
+            "$other": {
+              ".validate": false
+            }
+          },
+          "publicCatalog": {
+            ".read": "data.parent().child('storefront/enabled').val() === true",
+            ".validate": "newData.parent().child('storefront/enabled').val() === true && newData.hasChildren(['title'])",
+            "title": {
+              ".validate": "newData.isString() && newData.val() === newData.parent().parent().child('storefront/title').val()"
+            },
+            "products": {
+              "$id": {
+                ".validate": "newData.hasChildren(['id','title','categoryId','categoryTitle','imageUrl','price','available']) && newData.parent().parent().parent().child('products').child($id).exists() && newData.parent().parent().parent().child('products').child($id).child('archived').val() === false",
+                "id": {
+                  ".validate": "newData.val() === newData.parent().parent().parent().parent().child('products').child($id).child('id').val()"
+                },
+                "title": {
+                  ".validate": "newData.val() === newData.parent().parent().parent().parent().child('products').child($id).child('title').val()"
+                },
+                "categoryId": {
+                  ".validate": "newData.val() === newData.parent().parent().parent().parent().child('products').child($id).child('categoryId').val()"
+                },
+                "price": {
+                  ".validate": "newData.val() === newData.parent().parent().parent().parent().child('products').child($id).child('price').val()"
+                },
+                "imageUrl": {
+                  ".validate": "newData.isString() && (newData.val() === '' || newData.val() === newData.parent().parent().parent().parent().child('products').child($id).child('imageUrl').val())"
+                },
+                "available": {
+                  ".validate": "newData.isBoolean() && newData.val() === (newData.parent().parent().parent().parent().child('products').child($id).child('stock').val() > 0)"
+                },
+                "categoryTitle": {
+                  ".validate": "newData.isString() && newData.val() === newData.parent().parent().parent().parent().child('categories').child(newData.parent().parent().parent().parent().child('products').child($id).child('categoryId').val()).child('title').val()"
+                },
+                "$other": {
+                  ".validate": false
+                }
+              }
+            },
+            "$other": {
+              ".validate": false
+            }
           }
         }
       }
