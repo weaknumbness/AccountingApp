@@ -14,6 +14,7 @@ import DeleteProductDialog from "../features/products/DeleteProductDialog";
 import ProductForm from "../features/products/ProductForm";
 import ReceiptForm from "../features/products/ReceiptForm";
 import CategoryForm from "../features/categories/CategoryForm";
+import StorefrontSettings from "../features/storefront/StorefrontSettings";
 import Reports from "../features/Reports";
 type Dialog =
   | { kind: "product"; id: string | null }
@@ -30,11 +31,13 @@ const titles: Record<Page, string> = {
 };
 export default function Dashboard({
   repository,
+  ownerUid,
   email,
   demo,
   onLogout,
 }: {
   repository: Repository;
+  ownerUid: string | null;
   email: string;
   demo: boolean;
   onLogout: () => void;
@@ -474,9 +477,9 @@ export default function Dashboard({
                     Скачать резервную копию JSON
                   </button>
                   <p className="muted">
-                    Архивные и удалённые товары сохраняют историю и выручку. Гостевой
-                    каталог будет отдельным этапом.
+                    Архивные и удалённые товары сохраняют историю и выручку.
                   </p>
+                  <StorefrontSettings key={`${state.storefront.enabled}-${state.storefront.title}`} settings={state.storefront} ownerUid={ownerUid} demo={demo} run={run} />
                   <button className="secondary-button logout-button" onClick={onLogout}>
                     Выйти из аккаунта
                   </button>

@@ -1,4 +1,5 @@
 import { get, onValue, ref, runTransaction } from "firebase/database";
+import { toStoredState } from "../domain/catalog";
 import { db } from "./firebase/firebase";
 import {
   applyCommand,
@@ -24,7 +25,7 @@ export async function firebaseRepository(uid: string): Promise<Repository> {
     const old = await get(ref(db, `users/${uid}`));
     const raw: unknown = old.val();
     const migrated = migrateLegacy(raw, Date.now());
-    await runTransaction(path, (value) => value ?? migrated, {
+    await runTransaction(path, (value) => value ?? toStoredState(migrated), {
       applyLocally: false,
     });
   }
@@ -49,7 +50,7 @@ export async function firebaseRepository(uid: string): Promise<Repository> {
         (value: unknown) => {
           // The SDK may first call with an empty local cache; wait for the actual state.
           if (value === null) return null;
-          return applyCommand(parseState(value), cmd);
+          return toStoredState(applyCommand(parseState(value), cmd));
         },
         { applyLocally: false },
       );

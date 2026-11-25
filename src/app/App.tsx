@@ -71,6 +71,7 @@ function Session({
   return repository ? (
     <Dashboard
       repository={repository}
+      ownerUid={user?.uid ?? null}
       email={demo ? "Деморежим" : (user?.email ?? "Личный аккаунт")}
       demo={demo}
       onLogout={onLogout}

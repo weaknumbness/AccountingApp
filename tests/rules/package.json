@@ -1,0 +1,13 @@
+{
+  "name": "accounting-catalog-rules-check",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "firebase emulators:exec --only database --project demo-accounting-catalog --config ../../firebase.emulators.json \"node catalog.rules.mjs\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "6.0.0",
+    "firebase": "13.4.0",
+    "firebase-tools": "15.37.0"
+  }
+}
