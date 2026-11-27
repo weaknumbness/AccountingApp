@@ -53,10 +53,7 @@ export function CatalogView({ catalog, demo = false, connected = true }: { catal
     <main className="catalog-main">
       {demo && <div className="catalog-banner">Пример витрины · демонстрационные товары и цены</div>}
       {!connected && !demo && <div className="catalog-banner" role="status">Нет связи с магазином. Показаны последние загруженные данные; наличие и цены могут измениться.</div>}
-      <section className="catalog-intro">
-        <div><p className="catalog-eyebrow">ВЫБИРАЙТЕ БЕЗ СПЕШКИ</p><h1>Всё, что есть<br/>в нашем магазине<span>.</span></h1><p className="catalog-description">Посмотрите ассортимент и цены.<br/>Здесь всегда можно узнать, что есть в наличии.</p></div>
-        <div className="catalog-intro-note"><span className="catalog-note-line"/><p>Небольшой каталог.<br/><strong>Простой выбор.</strong></p><span className="catalog-note-caption">Без регистрации и лишних шагов</span></div>
-      </section>
+
       <section aria-label="Поиск и фильтры" className="catalog-controls">
         <div className="catalog-search-row">
           <label className="catalog-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input aria-label="Поиск товаров" type="search" placeholder="Найти что-нибудь вкусное…" value={search} onChange={e => setSearch(e.target.value)} /></label>
@@ -75,7 +72,7 @@ export function CatalogView({ catalog, demo = false, connected = true }: { catal
         </article>)}</div> : <div className="catalog-empty"><h2>{products.length ? "Ничего не нашлось" : "Здесь скоро появятся товары"}</h2><p>{products.length ? "Попробуйте другое название или уберите фильтры." : "Магазин ещё наполняет свой ассортимент. Загляните немного позже."}</p>{products.length > 0 && <button onClick={reset}>Сбросить фильтры</button>}</div>}
       </section>
     </main>
-    <footer className="catalog-footer"><span>{catalog.title}</span><p>Каталог для знакомства с ассортиментом.<br/>Покупка и оплата на этой странице не предусмотрены.</p></footer>
+    {/* <footer className="catalog-footer"><span>{catalog.title}</span><p>Каталог для знакомства с ассортиментом.<br/>Покупка и оплата на этой странице не предусмотрены.</p></footer> */}
   </div>;
 }
 
